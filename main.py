@@ -6,6 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     indices = "BANKNIFTY"  # Replace with the indices you want to fetch expiry dates for
+    print(indices)
     nse = NSE_SESSION()
     expiry_dates = nse.GetExpiry(indices)
 
