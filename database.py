@@ -11,15 +11,16 @@ class NSE_SESSION:
             'accept-language': 'en,gu;q=0.9,hi;q=0.8',
             'accept-encoding': 'gzip, deflate, br'}
         self.cook_url = "https://www.nseindia.com/option-chain"
-        self.session = requests.Session()
-        self.cookies = self.session.get(self.cook_url, headers=self.headers , timeout = 5).cookies
+
 
     def GetExpiry(self,indices):
         url = f'https://www.nseindia.com/api/option-chain-indices?symbol={indices}'
         input_format = "%d-%b-%Y"
         output_format = "%d%b%y"
         try:
-            response = self.session.get(url,headers=self.headers, timeout=5, cookies=self.cookies)
+            self.session = requests.Session()
+            cookies = self.session.get(self.cook_url, headers=self.headers , timeout = 5).cookies
+            response = self.session.get(url,headers=self.headers, timeout=5, cookies=cookies)
             if response.status_code == 200:
                 records = response.json()['records']
                 format_exp = [datetime.strptime(date, input_format).strftime(output_format).upper() for date in
