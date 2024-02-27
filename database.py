@@ -5,9 +5,7 @@ from datetime import datetime
 
 class NSE_SESSION:
     def __init__(self):
-        self.headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-            'accept-language': 'en,gu;q=0.9,hi;q=0.8',
-            'accept-encoding': 'gzip, deflate, br'}
+        self.headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
         self.cook_url = "https://www.nseindia.com/option-chain"
         self.session = requests.Session()
         self.cookies = self.session.get(self.cook_url, headers=self.headers , timeout = 5).cookies
